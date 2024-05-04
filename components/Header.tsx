@@ -5,7 +5,7 @@ function Header() {
   return (
     <div className="px-6 pt-6 lg:px-8">
       <nav className="flex items-center justify-between" aria-label="Global">
-        <div className="flex lg:flex-1">
+        <div className="flex ">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Code of Relevancy</span>
             <Image
@@ -23,11 +23,17 @@ function Header() {
           >
             NPV Calculator <span aria-hidden="true">&rarr;</span>
           </Link>
+          <Link
+            href="/"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Production Rate Calculator <span aria-hidden="true">&rarr;</span>
+          </Link>
           <a
             href="/irr-calculator"
             className="text-sm font-semibold leading-6 text-gray-900"
           >
-            IRR Calculator <span aria-hidden="true">&rarr;</span>
+            EI Calculator <span aria-hidden="true">&rarr;</span>
           </a>
           <a
             href="/payout"

@@ -50,18 +50,33 @@ export default function Home() {
 
   const resetStatus = netIncome !== 0 || discountRate !== 0 || time !== 0;
   const { outcome } = useRecoilValue(stateAtom);
+  const tabs = [
+    {
+      title: "Exponential Decline",
+      content: <div>Content for Tab 1</div>,
+    },
+    {
+      title: "Harmonic Decline",
+      content: <div>Content for Tab 2</div>,
+    },
+    {
+      title: "Hyperbolic Decline",
+      content: <div>Content for Tab 3</div>,
+    },
+  ];
   return (
     <Layout>
       <main>
         <div className="relative px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-4 sm:py-8 lg:py-12">
+            <h1 className="text-center text-xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-12">
+              Production Rate Calculator
+            </h1>
             <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-              <div className="relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                Project
-              </div>
+              <Tabs tabs={tabs} />
             </div>
             <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              NPV Calculator
+              Production Rate Calculator
             </h1>
             <p className="text-center mt-6 text-lg leading-8 text-gray-600">
               An NPV (Net Present Value) calculator is a financial tool used to
@@ -137,18 +152,6 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8 py-1 sm:py-3">
             <dl className="grid grid-cols-1 gap-y-16 gap-x-6 text-center lg:grid-cols-1">
               <Outcome label="NPV" value={result} />
-              {/* <Outcome
-                label="Total Interest Payable"
-                value={outcome?.totalInterestPayable}
-              />
-              <Outcome
-                label="Principal Amount"
-                value={outcome?.principalAmount}
-              />
-              <Outcome
-                label="Total Payment (Principal + Interest)"
-                value={outcome?.totalPayment}
-              /> */}
             </dl>
           </div>
         </div>
@@ -167,3 +170,41 @@ function Outcome({ label, value }: OutcomeProps) {
     </div>
   );
 }
+
+const Tabs = ({ tabs }: any) => {
+  const [activeTab, setActiveTab] = useState(0);
+
+  return (
+    <div>
+      <div className="flex border-b border-gray-200 gap-8">
+        {tabs.map((tab: any, index: any) => (
+          <div
+            key={index}
+            onClick={() => setActiveTab(index)}
+            className="hidden sm:mb-8 sm:flex sm:justify-center cursor-pointer"
+          >
+            <div
+              className={`${
+                index === activeTab
+                  ? "bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600 text-white"
+                  : ""
+              } relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}
+            >
+              {tab.title}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="mt-4">
+        {tabs.map((tab: any, index: any) => (
+          <div
+            key={index}
+            style={{ display: index === activeTab ? "block" : "none" }}
+          >
+            {tab.content}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};

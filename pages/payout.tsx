@@ -27,7 +27,6 @@ export default function Home() {
   const resetState = useResetRecoilState(stateAtom);
   const [netIncome, setNetIncome] = useState(0);
   const [discountRate, setDiscountRate] = useState(0);
-  const [time, setTime] = useState(0);
   const { loanAmount, interestRate, loanTenure, prepayments, errors } = state;
   const [result, setResult] = useState(0);
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -38,17 +37,16 @@ export default function Home() {
   const onresetState = () => {
     setDiscountRate(0);
     setNetIncome(0);
-    setTime(0);
     setResult(0);
   };
   const onCalculate = () => {
-    if (netIncome !== 0 && discountRate !== 0 && time !== 0) {
-      const data = netIncome / Math.pow(1 + discountRate, time);
+    if (netIncome !== 0 && discountRate !== 0) {
+      const data = netIncome / discountRate;
       setResult(data);
     }
   };
 
-  const resetStatus = netIncome !== 0 || discountRate !== 0 || time !== 0;
+  const resetStatus = netIncome !== 0 || discountRate !== 0;
   const { outcome } = useRecoilValue(stateAtom);
   return (
     <Layout>
@@ -83,7 +81,7 @@ export default function Home() {
                 <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
                   <TextField
                     name="netIncome"
-                    label="Net Income For Time Period T"
+                    label="Capital Cost($)"
                     placeholder="50,00,000"
                     unit={CURRENCY_SYMBOL}
                     value={netIncome}
@@ -93,7 +91,7 @@ export default function Home() {
                   />
                   <TextField
                     name="discountRate"
-                    label="Discount Rate"
+                    label="Net Income per Month ($/Month)"
                     placeholder="9"
                     unit="%"
                     value={discountRate}
@@ -101,18 +99,7 @@ export default function Home() {
                       setDiscountRate(Number(e.target.value));
                     }}
                   />
-                  <TextField
-                    name="time"
-                    label="Time From Project Start Date"
-                    placeholder="20"
-                    unit="Yr"
-                    value={time}
-                    onChange={(e) => {
-                      setTime(Number(e.target.value));
-                    }}
-                  />
                 </div>
-
                 <div className="grid grid-cols-1 gap-4 mt-10 lg:grid-cols-2">
                   <button
                     type="button"
