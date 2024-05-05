@@ -21,6 +21,7 @@ import { CURRENCY_SYMBOL } from "@/constants";
 import { calculateEmiOutcome, validateForm } from "@/utils";
 
 import stateAtom from "@/atoms/stateAtom";
+import Link from "next/link";
 
 export default function Home() {
   const [state, setState] = useRecoilState(stateAtom);
@@ -69,14 +70,8 @@ export default function Home() {
       <main>
         <div className="relative px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-4 sm:py-8 lg:py-12">
-            <h1 className="text-center text-xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-12">
-              Production Rate Calculator
-            </h1>
-            <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-              <Tabs tabs={tabs} />
-            </div>
             <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Production Rate Calculator
+              Petroleum Project Calculator
             </h1>
             <p className="text-center mt-6 text-lg leading-8 text-gray-600">
               An NPV (Net Present Value) calculator is a financial tool used to
@@ -88,123 +83,17 @@ export default function Home() {
               generate positive or negative returns when discounted back to the
               present.
             </p>
-            <div className="py-6 px-6 sm:py-12 lg:px-8">
-              <form
-                action="#"
-                method="post"
-                className="mx-auto max-w-xl"
-                autoComplete="off"
+            <div className="flex items-center justify-center w-full">
+              <Link
+                href="/production-calculator"
+                className="rounded-xl border border-solid border-sky-500 bg-background-button-secondary flex items-center justify-center py-2 px-4 font-medium text-captionL text-text-base-primary mt-5"
               >
-                <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
-                  <TextField
-                    name="netIncome"
-                    label="Net Income For Time Period T"
-                    placeholder="50,00,000"
-                    unit={CURRENCY_SYMBOL}
-                    value={netIncome}
-                    onChange={(e) => {
-                      setNetIncome(Number(e.target.value));
-                    }}
-                  />
-                  <TextField
-                    name="discountRate"
-                    label="Discount Rate"
-                    placeholder="9"
-                    unit="%"
-                    value={discountRate}
-                    onChange={(e) => {
-                      setDiscountRate(Number(e.target.value));
-                    }}
-                  />
-                  <TextField
-                    name="time"
-                    label="Time From Project Start Date"
-                    placeholder="20"
-                    unit="Yr"
-                    value={time}
-                    onChange={(e) => {
-                      setTime(Number(e.target.value));
-                    }}
-                  />
-                </div>
-
-                <div className="grid grid-cols-1 gap-4 mt-10 lg:grid-cols-2">
-                  <button
-                    type="button"
-                    onClick={onCalculate}
-                    className="btn btn-primary"
-                  >
-                    Calculate
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={onresetState}
-                    className="btn btn-secondary"
-                    disabled={!resetStatus}
-                  >
-                    Reset
-                  </button>
-                </div>
-              </form>
+                Go to Calculator
+              </Link>
             </div>
-          </div>
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-1 sm:py-3">
-            <dl className="grid grid-cols-1 gap-y-16 gap-x-6 text-center lg:grid-cols-1">
-              <Outcome label="NPV" value={result} />
-            </dl>
           </div>
         </div>
       </main>
     </Layout>
   );
 }
-
-function Outcome({ label, value }: OutcomeProps) {
-  return (
-    <div className="mx-auto flex items-center max-w-xs flex-col gap-y-4">
-      <dt className="text-base leading-7 text-gray-600">{label}</dt>
-      <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
-        {toCurrency(value)}
-      </dd>
-    </div>
-  );
-}
-
-const Tabs = ({ tabs }: any) => {
-  const [activeTab, setActiveTab] = useState(0);
-
-  return (
-    <div>
-      <div className="flex border-b border-gray-200 gap-8">
-        {tabs.map((tab: any, index: any) => (
-          <div
-            key={index}
-            onClick={() => setActiveTab(index)}
-            className="hidden sm:mb-8 sm:flex sm:justify-center cursor-pointer"
-          >
-            <div
-              className={`${
-                index === activeTab
-                  ? "bg-indigo-600 hover:bg-indigo-500 focus-visible:outline-indigo-600 text-white"
-                  : ""
-              } relative rounded-full py-1 px-3 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20`}
-            >
-              {tab.title}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="mt-4">
-        {tabs.map((tab: any, index: any) => (
-          <div
-            key={index}
-            style={{ display: index === activeTab ? "block" : "none" }}
-          >
-            {tab.content}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};

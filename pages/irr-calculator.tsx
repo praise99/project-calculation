@@ -113,15 +113,12 @@ export default function Home() {
               ECONOMIC LIMIT Calculator
             </h1>
             <p className="text-center mt-6 text-lg leading-8 text-gray-600">
-              An IRR (Internal Rate of Return) calculator is a financial tool
-              used to estimate the rate of return at which the net present value
-              (NPV) of a series of cash flows becomes zero. It considers the
-              initial investment and the expected cash inflows and outflows over
-              the investment's duration. The IRR represents the discount rate
-              that makes the NPV of the cash flows equal to zero, indicating the
-              rate of return at which the investment breaks even. It helps
-              investors assess the profitability and risk of an investment,
-              comparing it to alternative investment opportunities.
+              Economic limit of an oil well specifies the production rate beyond
+              which the net income becomes negative. The economic limit is the
+              minimum production rate at which the net income is zero. The
+              economic limit is important since the definition of reserve
+              dictate that reserves are those volumes which can be produced
+              economically or up to the economic limit.
             </p>
             <div className="py-6 px-6 sm:py-12 lg:px-8">
               <form
@@ -135,7 +132,7 @@ export default function Home() {
                     name="revenueRate"
                     label="Revenue Interest"
                     placeholder="9"
-                    unit="%"
+                    unit=""
                     value={revenueRate}
                     className="sm:col-span-1"
                     onChange={(e) => {
@@ -146,7 +143,7 @@ export default function Home() {
                     name="workingRate"
                     label="Working Interest"
                     placeholder="9"
-                    unit="%"
+                    unit=""
                     value={workingRate}
                     className="sm:col-span-1"
                     onChange={(e) => {
@@ -157,7 +154,7 @@ export default function Home() {
                     name="oilPrice"
                     label="Oil Price"
                     placeholder="50,00,000"
-                    unit={CURRENCY_SYMBOL}
+                    unit="$/bbl"
                     className="sm:col-span-1"
                     value={oilPrice}
                     onChange={(e) => {
@@ -168,7 +165,7 @@ export default function Home() {
                     name="fixedCost"
                     label="Fixed Cost"
                     placeholder="50,00,000"
-                    unit={CURRENCY_SYMBOL}
+                    unit="$/month"
                     className="sm:col-span-1"
                     value={fixedCost}
                     onChange={(e) => {
@@ -179,7 +176,7 @@ export default function Home() {
                     name="overhead"
                     label="Overhead"
                     placeholder="50,00,000"
-                    unit={CURRENCY_SYMBOL}
+                    unit="$/month"
                     className="sm:col-span-1"
                     value={overhead}
                     onChange={(e) => {
@@ -191,7 +188,7 @@ export default function Home() {
                     label="Oil Expense"
                     placeholder="50,00,000"
                     className="sm:col-span-1"
-                    unit={CURRENCY_SYMBOL}
+                    unit="$/bbl"
                     value={oilExpense}
                     onChange={(e) => {
                       setOilExpense(Number(e.target.value));
@@ -199,7 +196,7 @@ export default function Home() {
                   />
                   <TextField
                     name="oilSeverance"
-                    label="Oil Severance Taz Rate (% of revenue in decimal)"
+                    label="Oil Severance Taz Rate"
                     placeholder="9"
                     unit="%"
                     value={oilSeverance}
@@ -211,9 +208,9 @@ export default function Home() {
                   <TextField
                     name="oilSeveranceTwo"
                     className="sm:col-span-1"
-                    label="Oil Severance Taz Rate ($/bbl)"
+                    label="Oil Severance Taz Rate"
                     placeholder="9"
-                    unit="%"
+                    unit="$/bbl"
                     value={oilSeveranceTwo}
                     onChange={(e) => {
                       setOilSeveranceTwo(Number(e.target.value));
@@ -281,7 +278,7 @@ function Outcome({ label, value }: OutcomeProps) {
     <div className="mx-auto flex items-center max-w-xs flex-col gap-y-4">
       <dt className="text-base leading-7 text-gray-600">{label}</dt>
       <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
-        {toCurrency(value)}
+        {toCurrency(value)} {value ? " bbl/m" : ""}
       </dd>
     </div>
   );

@@ -2,8 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/profitability-index": "pages/profitability-index.js",
-  "/irr-calculator": "pages/irr-calculator.js",
-  "/": "pages/index.js",
-  "/payout": "pages/payout.js"
+  "/": "pages/index.js"
 }

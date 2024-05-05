@@ -3,12 +3,12 @@ import Head from "next/head";
 function Meta() {
   return (
     <Head>
-      <title>EMI Calculator | Code of Relevancy</title>
+      <title>PETROLEUM CALCULATION</title>
 
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta
         name="description"
-        content="EMI calculator is developed by Code of Relevancy"
+        content="PETROLEUM CALCULATION is developed by Code of Relevancy"
       />
       <meta
         name="keywords"
@@ -19,10 +19,10 @@ function Meta() {
 
       {/* Open Graph Tags */}
       <meta property="og:type" content="website" />
-      <meta property="og:title" content="EMI Calculator" />
+      <meta property="og:title" content="PETROLEUM CALCULATION" />
       <meta
         property="og:description"
-        content="EMI calculator is developed by Code of Relevancy"
+        content="PETROLEUM CALCULATION is developed by Code of Relevancy"
       />
       <meta
         property="og:url"
@@ -35,10 +35,10 @@ function Meta() {
       <meta property="og:locale" content="en_US" />
 
       {/* Twitter Tags */}
-      <meta name="twitter:title" content="EMI Calculator" />
+      <meta name="twitter:title" content="PETROLEUM CALCULATION" />
       <meta
         name="twitter:description"
-        content="EMI calculator is developed by Code of Relevancy"
+        content="PETROLEUM CALCULATION is developed by Code of Relevancy"
       />
       <meta name="twitter:image" content="/logo.png" />
       <meta name="twitter:image:alt" content="Code of Relevancy" />
