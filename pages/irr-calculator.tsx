@@ -110,7 +110,7 @@ export default function Home() {
               </div>
             </div>
             <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              ECONOMIC LIMIT Calculator
+              ECONOMIC LIMIT
             </h1>
             <p className="text-center mt-6 text-lg leading-8 text-gray-600">
               Economic limit of an oil well specifies the production rate beyond

@@ -71,15 +71,18 @@ export default function Home() {
         <div className="relative px-6 lg:px-8">
           <div className="mx-auto max-w-2xl py-4 sm:py-8 lg:py-12">
             <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Oil well Economic Tool
+              Economic Evaluation of an oil well
             </h1>
             <p className="text-center mt-6 text-lg leading-8 text-gray-600">
-              Oil Well Economics Tool is a software application designed to help
-              users evaluate the financial viability and profitability of oil
-              wells. It typically incorporates various economic indicators such
-              as Net Present Value, Production rates, Production costs,
-              taxation, and market trends to provide insights into the potential
-              returns on investment.
+              This is a software application designed to help users evaluate the
+              financial viability and profitability of oil wells. It typically
+              incorporates various economic indicators such as Net Present
+              Value, Production rates, Production costs, taxation, and market
+              trends to provide insights into the potential returns on
+              investment. Economic evaluation helps stakeholders, such as
+              investors, operators, and government agencies, make informed
+              decisions about drilling, production, and investment strategies
+              related to oil wells
             </p>
             <div className="flex items-center justify-center w-full">
               <Link

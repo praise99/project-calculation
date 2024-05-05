@@ -58,7 +58,7 @@ export default function Home() {
               </div>
             </div>
             <h1 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              PROFITABILTY INDEX Calculator
+              PROFITABILTY INDEX
             </h1>
             <p className="text-center mt-6 text-lg leading-8 text-gray-600">
               Profitability Index measures the ratio between the present value

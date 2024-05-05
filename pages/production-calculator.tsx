@@ -135,7 +135,7 @@ const Exponential = () => {
   return (
     <>
       <h1 className="text-center text-xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-        Exponential Decline Calculator
+        Exponential Decline Model
       </h1>
       <p className="text-center mt-6 text-lg leading-8 text-gray-600">
         Production rate is a key metric of determining the future production of
@@ -257,7 +257,7 @@ const Hyperbolic = () => {
   return (
     <>
       <h1 className="text-center text-xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-12 ">
-        Hyperbolic Decline Calculator
+        Hyperbolic Decline Model
       </h1>
       <p className="text-center mt-6 text-lg leading-8 text-gray-600">
         The hyperbolic decline is very common in the less permeable, tightly
@@ -377,7 +377,7 @@ const Harmonic = () => {
   return (
     <>
       <h1 className="text-center text-xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-12 ">
-        Harmonic Decline Calculator
+        Harmonic Decline Model
       </h1>
       <p className="text-center mt-6 text-lg leading-8 text-gray-600">
         A harmonic decline is a type of hyperbolic decline and is most often

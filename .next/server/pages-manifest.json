@@ -2,6 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/production-calculator": "pages/production-calculator.js"
+  "/irr-calculator": "pages/irr-calculator.js",
+  "/profitability-index": "pages/profitability-index.js",
+  "/payout": "pages/payout.js",
+  "/production-calculator": "pages/production-calculator.js",
+  "/npv-calculator": "pages/npv-calculator.js"
 }
