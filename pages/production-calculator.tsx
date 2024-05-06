@@ -61,7 +61,7 @@ function Outcome({ label, value }: OutcomeProps) {
       <dt className="text-base leading-7 text-gray-600">{label}</dt>
       <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
         {toCurrency(value)}
-        {value ? " bbl/day" : ""}
+        {value ? " bbl" : ""}
       </dd>
     </div>
   );
@@ -125,7 +125,8 @@ const Exponential = () => {
   };
   const onCalculate = () => {
     if (netIncome !== 0 && discountRate !== 0 && time !== 0) {
-      const data = netIncome * Math.exp(-(discountRate * time));
+      const data = netIncome * Math.exp(-((discountRate / 100) * time));
+      console.log(data);
       setResult(data);
     }
   };
@@ -157,7 +158,7 @@ const Exponential = () => {
               name="netIncome"
               label="Initial Production Rate"
               placeholder="50,00,000"
-              unit="bbl/day"
+              unit="bbl"
               value={netIncome}
               onChange={(e) => {
                 setNetIncome(Number(e.target.value));
@@ -165,7 +166,7 @@ const Exponential = () => {
             />
             <TextField
               name="discountRate"
-              label="Initial Decline Rate"
+              label="Decline Rate"
               placeholder="9"
               unit="%"
               value={discountRate}
@@ -240,7 +241,7 @@ const Hyperbolic = () => {
         const data =
           netIncome /
           Math.pow(
-            1 + discountRate * parseFloat(bFactor) * time,
+            1 + (discountRate / 100) * parseFloat(bFactor) * time,
             1 / parseFloat(bFactor)
           );
         setResult(data);
@@ -276,7 +277,7 @@ const Hyperbolic = () => {
               name="netIncome"
               label="Initial Production Rate"
               placeholder="50,00,000"
-              unit="bbl/day"
+              unit="bbl"
               value={netIncome}
               onChange={(e) => {
                 setNetIncome(Number(e.target.value));
@@ -284,7 +285,7 @@ const Hyperbolic = () => {
             />
             <TextField
               name="discountRate"
-              label="Initial Decline Rate"
+              label="Decline Rate"
               placeholder="9"
               unit="%"
               value={discountRate}
@@ -367,7 +368,7 @@ const Harmonic = () => {
   };
   const onCalculate = () => {
     if (netIncome !== 0 && discountRate !== 0 && time !== 0) {
-      const data = netIncome / (1 + discountRate * time);
+      const data = netIncome / (1 + (discountRate / 100) * time);
       setResult(data);
     }
   };
@@ -396,7 +397,7 @@ const Harmonic = () => {
               name="netIncome"
               label="Initial Production Rate"
               placeholder="50,00,000"
-              unit="bbl/day"
+              unit="bbl"
               value={netIncome}
               onChange={(e) => {
                 setNetIncome(Number(e.target.value));
@@ -404,7 +405,7 @@ const Harmonic = () => {
             />
             <TextField
               name="discountRate"
-              label="Initial Decline Rate"
+              label="Decline Rate"
               placeholder="9"
               unit="%"
               value={discountRate}

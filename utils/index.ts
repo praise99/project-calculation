@@ -31,6 +31,17 @@ function toCurrency(value: number | undefined): string {
     maximumFractionDigits: 3,
   });
 }
+function toSecondCurrency(value: number | undefined): string {
+  if (!value) return "-";
+
+  const formattedValue = Number(value);
+
+  return formattedValue.toLocaleString("en-US", {
+    currency: CURRENCY,
+    minimumFractionDigits: 7,
+    maximumFractionDigits: 7,
+  });
+}
 
 function calculateEmiOutcome(
   loanAmount: number,
@@ -155,4 +166,5 @@ export {
   formatter,
   pieFormatter,
   validateForm,
+  toSecondCurrency,
 };

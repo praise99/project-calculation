@@ -30,21 +30,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/irr-calculator.js"
     ],
-    "/npv-calculator": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/npv-calculator.js"
-    ],
-    "/payout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/payout.js"
-    ],
-    "/production-calculator": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/production-calculator.js"
-    ],
     "/profitability-index": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",

@@ -15,7 +15,7 @@ import {
 import { useRecoilValue } from "recoil";
 
 import { OutcomeProps } from "@/types";
-import { toCurrency } from "@/utils";
+import { toCurrency, toSecondCurrency } from "@/utils";
 
 import { CURRENCY_SYMBOL } from "@/constants";
 import { calculateEmiOutcome, validateForm } from "@/utils";
@@ -77,14 +77,17 @@ export default function Home() {
       oilSeveranceTwo !== 0 &&
       adValerom !== 0
     ) {
+      let topCalculation = workingRate * revenueRate;
+      let middleCalculation =
+        fixedCost * (1 - oilSeveranceTwo) * (oilExpense / 1000);
+      let firstCalc = oilPrice * (1 - oilSeverance);
+      let bottomCalcu = 1 - adValerom;
+      console.log(topCalculation, middleCalculation, firstCalc, bottomCalcu);
       const data =
-        (workingRate * (fixedCost + overhead)) /
-        (revenueRate *
-          (oilPrice * 1 - (oilSeverance + adValerom) - oilSeveranceTwo) -
-          workingRate * oilExpense);
-      console.log(data);
+        topCalculation /
+        (overhead * (firstCalc + middleCalculation) * bottomCalcu);
+      console.log("dat", data);
       setResult(data);
-      console.log("here");
     }
   };
 
@@ -130,9 +133,9 @@ export default function Home() {
                 <div className="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
                   <TextField
                     name="revenueRate"
-                    label="Revenue Interest"
+                    label="Lease Operating Expenses"
                     placeholder="9"
-                    unit=""
+                    unit="$/well/month"
                     value={revenueRate}
                     className="sm:col-span-1"
                     onChange={(e) => {
@@ -154,7 +157,7 @@ export default function Home() {
                     name="oilPrice"
                     label="Oil Price"
                     placeholder="50,00,000"
-                    unit="$/bbl"
+                    unit="$/stb"
                     className="sm:col-span-1"
                     value={oilPrice}
                     onChange={(e) => {
@@ -163,9 +166,9 @@ export default function Home() {
                   />
                   <TextField
                     name="fixedCost"
-                    label="Fixed Cost"
+                    label="Gas Price"
                     placeholder="50,00,000"
-                    unit="$/month"
+                    unit="$/M Scf"
                     className="sm:col-span-1"
                     value={fixedCost}
                     onChange={(e) => {
@@ -174,9 +177,9 @@ export default function Home() {
                   />
                   <TextField
                     name="overhead"
-                    label="Overhead"
+                    label="Net Revenue Interest"
                     placeholder="50,00,000"
-                    unit="$/month"
+                    unit=""
                     className="sm:col-span-1"
                     value={overhead}
                     onChange={(e) => {
@@ -185,10 +188,10 @@ export default function Home() {
                   />
                   <TextField
                     name="oilExpense"
-                    label="Oil Expense"
+                    label="Gas Oil Ratio"
                     placeholder="50,00,000"
                     className="sm:col-span-1"
-                    unit="$/bbl"
+                    unit="scf/otb"
                     value={oilExpense}
                     onChange={(e) => {
                       setOilExpense(Number(e.target.value));
@@ -196,9 +199,9 @@ export default function Home() {
                   />
                   <TextField
                     name="oilSeverance"
-                    label="Oil Severance Taz Rate"
+                    label="Oil Severance"
                     placeholder="9"
-                    unit="%"
+                    unit=""
                     value={oilSeverance}
                     className="sm:col-span-1"
                     onChange={(e) => {
@@ -208,9 +211,9 @@ export default function Home() {
                   <TextField
                     name="oilSeveranceTwo"
                     className="sm:col-span-1"
-                    label="Oil Severance Taz Rate"
+                    label="Gas Severance"
                     placeholder="9"
-                    unit="$/bbl"
+                    unit=""
                     value={oilSeveranceTwo}
                     onChange={(e) => {
                       setOilSeveranceTwo(Number(e.target.value));
@@ -219,9 +222,9 @@ export default function Home() {
                   <TextField
                     name="adValerom"
                     className="sm:col-span-1"
-                    label="Act valorem tax rate"
+                    label="Ad valorem tax"
                     placeholder="9"
-                    unit="%"
+                    unit=""
                     value={adValerom}
                     onChange={(e) => {
                       setAdValerom(Number(e.target.value));
@@ -278,7 +281,7 @@ function Outcome({ label, value }: OutcomeProps) {
     <div className="mx-auto flex items-center max-w-xs flex-col gap-y-4">
       <dt className="text-base leading-7 text-gray-600">{label}</dt>
       <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
-        {toCurrency(value)} {value ? " bbl/m" : ""}
+        {toSecondCurrency(value)} {value ? " bbl/m" : ""}
       </dd>
     </div>
   );

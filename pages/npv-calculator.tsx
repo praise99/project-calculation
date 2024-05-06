@@ -43,7 +43,7 @@ export default function Home() {
   };
   const onCalculate = () => {
     if (netIncome !== 0 && discountRate !== 0 && time !== 0) {
-      const data = netIncome / Math.pow(1 + discountRate, time);
+      const data = netIncome / Math.pow(1 + discountRate / 100, time);
       setResult(data);
     }
   };
