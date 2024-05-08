@@ -2,6 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/irr-calculator": "pages/irr-calculator.js",
-  "/profitability-index": "pages/profitability-index.js"
+  "/profitability-index": "pages/profitability-index.js",
+  "/production-calculator": "pages/production-calculator.js"
 }

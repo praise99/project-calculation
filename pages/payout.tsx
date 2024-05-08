@@ -91,7 +91,7 @@ export default function Home() {
                   />
                   <TextField
                     name="discountRate"
-                    label="Net Income per Month ($/Month)"
+                    label="Net Income per Month ($/Year)"
                     placeholder="9"
                     unit="$"
                     value={discountRate}
@@ -149,7 +149,7 @@ function Outcome({ label, value }: OutcomeProps) {
     <div className="mx-auto flex items-center max-w-xs flex-col gap-y-4">
       <dt className="text-base leading-7 text-gray-600">{label}</dt>
       <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl">
-        {toCurrency(value)}
+        {toCurrency(value)} {value ? " yr" : ""}
       </dd>
     </div>
   );

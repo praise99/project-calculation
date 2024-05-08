@@ -40,7 +40,7 @@ export default function Home() {
   };
   const onCalculate = () => {
     if (netIncome !== 0 && time !== 0) {
-      const data = netIncome / time;
+      const data = 1 + netIncome / time;
       setResult(data);
     }
   };

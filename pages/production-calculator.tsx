@@ -111,7 +111,7 @@ const Exponential = () => {
   const [discountRate, setDiscountRate] = useState(0);
   const [time, setTime] = useState(0);
   const { loanAmount, interestRate, loanTenure, prepayments, errors } = state;
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState<any[]>([]);
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -121,13 +121,32 @@ const Exponential = () => {
     setDiscountRate(0);
     setNetIncome(0);
     setTime(0);
-    setResult(0);
+    setResult([]);
   };
+  function calculateData(
+    netIncome: number,
+    discountRate: number,
+    time: number
+  ): { year: number; data: string }[] {
+    const dataArray: { year: number; data: string }[] = [];
+
+    for (let i = 1; i <= time; i++) {
+      const data = netIncome * Math.exp(-((discountRate / 100) * i));
+      dataArray.push({
+        year: i,
+        data: Math.ceil(data).toLocaleString(),
+      });
+    }
+
+    return dataArray;
+  }
   const onCalculate = () => {
     if (netIncome !== 0 && discountRate !== 0 && time !== 0) {
-      const data = netIncome * Math.exp(-((discountRate / 100) * time));
-      console.log(data);
-      setResult(data);
+      // const data = netIncome * Math.exp(-((discountRate / 100) * time));
+      // console.log(data);
+      // setResult(data);
+      console.log(calculateData(netIncome, discountRate, time));
+      setResult(calculateData(netIncome, discountRate, time));
     }
   };
 
@@ -208,7 +227,7 @@ const Exponential = () => {
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-1 sm:py-3">
         <dl className="grid grid-cols-1 gap-y-16 gap-x-6 text-center lg:grid-cols-1">
-          <Outcome label="PRODUCTION RATE" value={result} />
+          {result.length > 0 && <Table dataArray={result} />}
         </dl>
       </div>
     </>
@@ -222,7 +241,7 @@ const Hyperbolic = () => {
   const [time, setTime] = useState(0);
   const [bFactor, setbFactor] = useState("");
   const { loanAmount, interestRate, loanTenure, prepayments, errors } = state;
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState<any[]>([]);
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -233,18 +252,41 @@ const Hyperbolic = () => {
     setNetIncome(0);
     setTime(0);
     setbFactor("");
-    setResult(0);
+    setResult([]);
   };
+  function calculateData(
+    netIncome: number,
+    discountRate: number,
+    time: number,
+    bFactor: number
+  ): { year: number; data: string }[] {
+    const dataArray: { year: number; data: string }[] = [];
+
+    for (let i = 1; i <= time; i++) {
+      const data =
+        netIncome /
+        Math.pow(1 + (discountRate / 100) * bFactor * i, 1 / bFactor);
+      dataArray.push({
+        year: i,
+        data: Math.ceil(data).toLocaleString(),
+      });
+    }
+
+    return dataArray;
+  }
   const onCalculate = () => {
     if (netIncome !== 0 && discountRate !== 0 && time !== 0) {
       if (parseFloat(bFactor) <= 1) {
-        const data =
-          netIncome /
-          Math.pow(
-            1 + (discountRate / 100) * parseFloat(bFactor) * time,
-            1 / parseFloat(bFactor)
-          );
-        setResult(data);
+        // const data =
+        //   netIncome /
+        //   Math.pow(
+        //     1 + (discountRate / 100) * parseFloat(bFactor) * time,
+        //     1 / parseFloat(bFactor)
+        //   );
+        setResult(
+          calculateData(netIncome, discountRate, time, parseFloat(bFactor))
+        );
+        // setResult(data);
       }
     }
   };
@@ -341,7 +383,7 @@ const Hyperbolic = () => {
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-1 sm:py-3">
         <dl className="grid grid-cols-1 gap-y-16 gap-x-6 text-center lg:grid-cols-1">
-          <Outcome label="PRODUCTION RATE" value={result} />
+          {result.length > 0 && <Table dataArray={result} />}
         </dl>
       </div>
     </>
@@ -354,7 +396,7 @@ const Harmonic = () => {
   const [discountRate, setDiscountRate] = useState(0);
   const [time, setTime] = useState(0);
   const { loanAmount, interestRate, loanTenure, prepayments, errors } = state;
-  const [result, setResult] = useState(0);
+  const [result, setResult] = useState<any[]>([]);
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -364,12 +406,28 @@ const Harmonic = () => {
     setDiscountRate(0);
     setNetIncome(0);
     setTime(0);
-    setResult(0);
+    setResult([]);
   };
+  function calculateData(
+    netIncome: number,
+    discountRate: number,
+    time: number
+  ): { year: number; data: string }[] {
+    const dataArray: { year: number; data: string }[] = [];
+
+    for (let i = 1; i <= time; i++) {
+      const data = netIncome / (1 + (discountRate / 100) * i);
+      dataArray.push({
+        year: i,
+        data: Math.ceil(data).toLocaleString(),
+      });
+    }
+    return dataArray;
+  }
   const onCalculate = () => {
     if (netIncome !== 0 && discountRate !== 0 && time !== 0) {
-      const data = netIncome / (1 + (discountRate / 100) * time);
-      setResult(data);
+      // const data = netIncome / (1 + (discountRate / 100) * time);
+      setResult(calculateData(netIncome, discountRate, time));
     }
   };
 
@@ -447,9 +505,44 @@ const Harmonic = () => {
       </div>
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-1 sm:py-3">
         <dl className="grid grid-cols-1 gap-y-16 gap-x-6 text-center lg:grid-cols-1">
-          <Outcome label="PRODUCTION RATE" value={result} />
+          {result.length > 0 && <Table dataArray={result} />}
         </dl>
       </div>
     </>
   );
 };
+
+function Table({ dataArray }: any) {
+  return (
+    <table className="min-w-full divide-y divide-gray-200">
+      <thead>
+        <tr>
+          <th
+            scope="col"
+            className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Year of Production
+          </th>
+          <th
+            scope="col"
+            className="px-6 py-3 bg-gray-50 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+          >
+            Flow Rate, Barrells
+          </th>
+        </tr>
+      </thead>
+      <tbody className="bg-white divide-y divide-gray-200">
+        {dataArray.map((item: any) => (
+          <tr key={item.year}>
+            <td className="px-6 py-4 whitespace-nowrap text-left">
+              {item.year}
+            </td>
+            <td className="px-6 py-4 whitespace-nowrap text-left">
+              {item.data}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
