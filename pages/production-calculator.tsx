@@ -271,7 +271,6 @@ const Hyperbolic = () => {
         data: Math.ceil(data).toLocaleString(),
       });
     }
-
     return dataArray;
   }
   const onCalculate = () => {

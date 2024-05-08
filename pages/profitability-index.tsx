@@ -80,7 +80,7 @@ export default function Home() {
                     name="netIncome"
                     label="Present value of Future Cash Flows"
                     placeholder="50,00,000"
-                    unit={CURRENCY_SYMBOL}
+                    unit="$"
                     value={netIncome}
                     onChange={(e) => {
                       setNetIncome(Number(e.target.value));
@@ -90,7 +90,7 @@ export default function Home() {
                     name="time"
                     label="Initial Investment"
                     placeholder="50,00,000"
-                    unit={CURRENCY_SYMBOL}
+                    unit="$"
                     value={time}
                     onChange={(e) => {
                       setTime(Number(e.target.value));

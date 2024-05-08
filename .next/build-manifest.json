@@ -29,11 +29,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/production-calculator.js"
-    ],
-    "/profitability-index": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/profitability-index.js"
     ]
   },
   "ampFirstPages": []
